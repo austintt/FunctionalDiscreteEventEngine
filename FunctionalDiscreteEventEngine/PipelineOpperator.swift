@@ -16,5 +16,10 @@ func |> <T,U>(left: T, right: T -> U) -> U {
 
 
 func |> <T>(left: ((String?, Entity)->T, Entity, (String?, Any)->()), var right: ()->() ) -> (T){
-
+//    let (aUUID, anAny) = doStuff(entry)
+//    if aUUID != nil {
+//        errorHandler(aUUID, anAny)
+//    } else {
+//        return nextFunc(aUUID, anAny)
+//    }
 }
