@@ -13,6 +13,8 @@
 		D97CF6C51A0BDFEF002F82D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97CF6C41A0BDFEF002F82D1 /* Images.xcassets */; };
 		D97CF6C81A0BDFEF002F82D1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97CF6C61A0BDFEF002F82D1 /* LaunchScreen.xib */; };
 		D97CF6D41A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6D31A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.swift */; };
+		D97CF6DE1A0BE41A002F82D1 /* PipelineOpperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */; };
+		D97CF6E01A0BE42A002F82D1 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6DF1A0BE42A002F82D1 /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		D97CF6CD1A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalDiscreteEventEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97CF6D21A0BDFEF002F82D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D97CF6D31A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalDiscreteEventEngineTests.swift; sourceTree = "<group>"; };
+		D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineOpperator.swift; sourceTree = "<group>"; };
+		D97CF6DF1A0BE42A002F82D1 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				D97CF6BD1A0BDFEF002F82D1 /* AppDelegate.swift */,
+				D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */,
+				D97CF6DF1A0BE42A002F82D1 /* Entity.swift */,
 				D97CF6BF1A0BDFEF002F82D1 /* ViewController.swift */,
 				D97CF6C11A0BDFEF002F82D1 /* Main.storyboard */,
 				D97CF6C41A0BDFEF002F82D1 /* Images.xcassets */,
@@ -212,6 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97CF6E01A0BE42A002F82D1 /* Entity.swift in Sources */,
+				D97CF6DE1A0BE41A002F82D1 /* PipelineOpperator.swift in Sources */,
 				D97CF6C01A0BDFEF002F82D1 /* ViewController.swift in Sources */,
 				D97CF6BE1A0BDFEF002F82D1 /* AppDelegate.swift in Sources */,
 			);

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AA8C2227-48C5-4880-A1F0-E7AFE727A427</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FunctionalDiscreteEventEngine</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F2EF396DC72D95425864EFD3C6803B9A51BC9E20</key>
+		<string>https://github.com/austintt/FunctionalDiscreteEventEngine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FunctionalDiscreteEventEngine.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F2EF396DC72D95425864EFD3C6803B9A51BC9E20</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/austintt/FunctionalDiscreteEventEngine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F2EF396DC72D95425864EFD3C6803B9A51BC9E20</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F2EF396DC72D95425864EFD3C6803B9A51BC9E20</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FunctionalDiscreteEventEngine</string>
+		</dict>
+	</array>
+</dict>
+</plist>
