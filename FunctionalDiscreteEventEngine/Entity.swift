@@ -10,10 +10,10 @@ import Foundation
 
 struct Entity {
     var number: Int
-    var failFlag: Int?
+    var failPoints: [String]?
     
     init(number: Int){
         self.number = number
-        self.failFlag = nil
+        self.failPoints = nil
     }
 }
