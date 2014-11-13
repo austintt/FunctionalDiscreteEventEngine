@@ -43,9 +43,10 @@ func checkForNext() {
     
 }
 
-func SimulationEngine {
-    var graphs: [([(Entity, Time) -> (Entity, Bool, Bool)], [(Entity, Time) -> (Entity, Bool, Bool)])]?
-    var entitiesDictionary[graph: Entity]?
+
+func SimulationEngine() {
+    var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
+    var entitiesDictionary :[graph: Entity]?
     var simQueue
 }
 
