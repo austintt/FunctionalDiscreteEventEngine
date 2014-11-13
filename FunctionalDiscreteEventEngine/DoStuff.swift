@@ -42,3 +42,20 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
 func checkForNext() {
     
 }
+
+func SimulationEngine {
+    var graphs: [([(Entity, Time) -> (Entity, Bool, Bool)], [(Entity, Time) -> (Entity, Bool, Bool)])]?
+    var entitiesDictionary[graph: Entity]?
+    var simQueue
+}
+
+func go(SimulateStartTime: Int) {
+    for graph in graphs{
+        var entities = entitiesDisctionary[graph]
+        for anEntity in entity {
+            dispatch_async(simQueue) {
+                doGraph()
+            }
+        }
+    }
+}
