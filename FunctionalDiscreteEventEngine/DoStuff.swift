@@ -18,16 +18,25 @@ func doStuff(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
     
     
     //check for failure
-    
+    if somethingWentWrong {
+        if let rollbackTo = thingToActOn.rollbacks?.last {
+            return (nil, rollbackTo)
+        }
+    }
     
     //check for next
-    
-    
+    if let next = nextActions?.first {
+        // Pop first off the array
+        
         //check for altertate
-    
-    
-    
+        if let alternateNexts = alternateMap?[next] && alternateShouldRun {
+            let alternateNext.first // Pop first from list
+            return alternateNext(thingToActOn, alternateNexts, alternateMap)
+        }
+        next(thingToActOn, nextActions, alternateMap)
+    }
     //return
+    return thingToActOn
 }
 
 func checkForNext() {
