@@ -18,11 +18,12 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
     
     
     //check for failure
-    if somethingWentWrong {
-        if let rollbackTo = thingToActOn.rollbacks?.last {
+    if thingToActOn.failPoints != nil {
+        if let rollbackTo = thingToActOn.failPoints?.last {
             return (nil, rollbackTo)
         }
     }
+
 
     //check for next
     if let next = nextActions?.removeAtIndex(0) {
@@ -30,7 +31,7 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
         
         //check for altertate
         if let alternateNexts = alternateMap?[next] && alternateShouldRun {
-            let alternateNexts.removeAtIndex(0) // Pop first from list
+            let alternateNexts. // Pop first from list
             return alternateNext(thingToActOn, alternateNexts, alternateMap)
         }
         next(thingToActOn, nextActions, alternateMap)
@@ -42,17 +43,6 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
 func checkForNext() {
     
 }
-
-func errorCheck(thingToActOn: Entity, somethingWentWrong: Bool) -> (Bool?, String?) {
-    //check for failure
-    if somethingWentWrong {
-        if let rollbackTo = thingToActOn.failPoints?.last {
-            return (nil, rollbackTo)
-        }
-    }
-
-}
-
 
 
 func SimulationEngine() {

@@ -10,3 +10,8 @@ var item = blah.removeAtIndex(1)
 println(blah)
 println(blah[0])
 println(item)
+
+
+var myMap = ["cat": 1, "dog": 2, "wow": 3]
+
+myMap.removeAtIndex(0)
