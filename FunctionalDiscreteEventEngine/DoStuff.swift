@@ -48,14 +48,14 @@ func SimulationEngine() {
     var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
     var entitiesDictionary :[graph: Entity]?
     var simQueue
-}
 
-func go(SimulateStartTime: Int) {
-    for graph in graphs{
-        var entities = entitiesDisctionary[graph]
-        for anEntity in entity {
-            dispatch_async(simQueue) {
-                doGraph()
+    func go(SimulateStartTime: Int) {
+        for graph in graphs{
+            var entities = entitiesDisctionary[graph]
+            for anEntity in entity {
+                dispatch_async(simQueue) {
+                    doGraph()
+                }
             }
         }
     }
