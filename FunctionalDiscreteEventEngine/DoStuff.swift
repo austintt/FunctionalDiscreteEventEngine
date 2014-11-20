@@ -13,7 +13,7 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
     //generate UUID
     let uuid = NSUUID().UUIDString
     
-    //code to execute
+    //code to  execute
     //closure?
     
     
@@ -23,14 +23,14 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
             return (nil, rollbackTo)
         }
     }
-    
+
     //check for next
-    if let next = nextActions?.first {
+    if let next = nextActions?.removeAtIndex(0) {
         // Pop first off the array
         
         //check for altertate
         if let alternateNexts = alternateMap?[next] && alternateShouldRun {
-            let alternateNexts.first // Pop first from list
+            let alternateNexts.removeAtIndex(0) // Pop first from list
             return alternateNext(thingToActOn, alternateNexts, alternateMap)
         }
         next(thingToActOn, nextActions, alternateMap)
