@@ -8,7 +8,7 @@
 
 import Foundation
 
-func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) -> (Entity?, String?) {
+func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?, alternateShouldRun: ((Entity) -> (Bool))?) -> (Entity?, String?) {
     
     //generate UUID
     let uuid = NSUUID().UUIDString
@@ -24,14 +24,13 @@ func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?) 
         }
     }
 
-
     //check for next
     if let next = nextActions?.removeAtIndex(0) {
         // Pop first off the array
         
         //check for altertate
-        if let alternateNexts = alternateMap?[next] && alternateShouldRun {
-            let alternateNexts. // Pop first from list
+        if let alternateNexts = alternateMap?[next] && alternateShouldRun?(thingToActOn) {
+            let alternateNext = alternateNexts.removeAtIndex(0) // Pop first from list
             return alternateNext(thingToActOn, alternateNexts, alternateMap)
         }
         next(thingToActOn, nextActions, alternateMap)
