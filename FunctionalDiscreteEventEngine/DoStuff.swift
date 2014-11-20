@@ -44,10 +44,11 @@ func checkForNext() {
 }
 
 
-func SimulationEngine() {
+struct SimulationEngine {
     var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
     var entitiesDictionary :[graph: Entity]?
     var simQueue
+    
 
     func go(SimulateStartTime: Int) {
         for graph in graphs{
