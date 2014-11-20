@@ -43,6 +43,17 @@ func checkForNext() {
     
 }
 
+func errorCheck(thingToActOn: Entity, somethingWentWrong: Bool) -> (Bool?, String?) {
+    //check for failure
+    if somethingWentWrong {
+        if let rollbackTo = thingToActOn.failPoints?.last {
+            return (nil, rollbackTo)
+        }
+    }
+
+}
+
+
 
 func SimulationEngine() {
     var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
