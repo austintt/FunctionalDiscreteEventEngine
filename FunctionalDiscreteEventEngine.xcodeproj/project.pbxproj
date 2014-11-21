@@ -15,6 +15,7 @@
 		D97CF6D41A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6D31A0BDFEF002F82D1 /* FunctionalDiscreteEventEngineTests.swift */; };
 		D97CF6DE1A0BE41A002F82D1 /* PipelineOpperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */; };
 		D97CF6E01A0BE42A002F82D1 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CF6DF1A0BE42A002F82D1 /* Entity.swift */; };
+		D9DC7A441A1FA31C0073F9D0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC7A431A1FA31C0073F9D0 /* Graph.swift */; };
 		D9E88BC91A151B0C00E157C1 /* DoStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E88BC81A151B0C00E157C1 /* DoStuff.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineOpperator.swift; sourceTree = "<group>"; };
 		D97CF6DF1A0BE42A002F82D1 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		D9D6BDDD1A1E5B230077C96D /* array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = array.playground; sourceTree = "<group>"; };
+		D9DC7A431A1FA31C0073F9D0 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = ../Graph.swift; sourceTree = "<group>"; };
 		D9E88BC81A151B0C00E157C1 /* DoStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoStuff.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 				D97CF6BD1A0BDFEF002F82D1 /* AppDelegate.swift */,
 				D97CF6DD1A0BE41A002F82D1 /* PipelineOpperator.swift */,
 				D97CF6DF1A0BE42A002F82D1 /* Entity.swift */,
+				D9DC7A431A1FA31C0073F9D0 /* Graph.swift */,
 				D9E88BC81A151B0C00E157C1 /* DoStuff.swift */,
 				D97CF6BF1A0BDFEF002F82D1 /* ViewController.swift */,
 				D97CF6C11A0BDFEF002F82D1 /* Main.storyboard */,
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DC7A441A1FA31C0073F9D0 /* Graph.swift in Sources */,
 				D97CF6E01A0BE42A002F82D1 /* Entity.swift in Sources */,
 				D9E88BC91A151B0C00E157C1 /* DoStuff.swift in Sources */,
 				D97CF6DE1A0BE41A002F82D1 /* PipelineOpperator.swift in Sources */,

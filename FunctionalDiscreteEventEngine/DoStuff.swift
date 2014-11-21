@@ -45,9 +45,13 @@ func checkForNext() {
 
 
 struct SimulationEngine {
-    var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
-    var entitiesDictionary: [[([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]: Entity]?
-    var simQueue
+    /** 
+    the var graph is not hashable and cannot be stored in a dictionary
+    implementing a Graph struct
+    **/
+//    var graph: [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
+    var entitiesDictionary: [graph : Entity]?
+    var simQueue // = ?
     
 
     func go(SimulateStartTime: Int) {
