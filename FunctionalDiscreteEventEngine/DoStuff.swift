@@ -8,40 +8,41 @@
 
 import Foundation
 
-func doGraph(thingToActOn: Entity, nextActions: [T]?, alternateMap: [T : [T]]?, alternateShouldRun: ((Entity) -> (Bool))?) -> (Entity?, String?) {
+func doGraph(thingToActOn: Entity, var nextActions: [(Entity) -> (Entity)]?, alternateMap: [(Entity) -> (Entity) : [(Entity) -> (Entity)]]?) -> (Entity) {
     
     //generate UUID
     let uuid = NSUUID().UUIDString
-    
-    //code to  execute
-    //closure?
     
     
     //check for failure
     if thingToActOn.failPoints != nil {
         if let rollbackTo = thingToActOn.failPoints?.last {
-            return (nil, rollbackTo)
+            return (thingToActOn)
         }
     }
 
     //check for next
-    if let next = nextActions?.removeAtIndex(0) {
+    var next = nextActions?.removeAtIndex(0)
+    if next != nil {
+        
         // Pop first off the array
+        let nextFunc = next! as ((Entity) -> (Entity))
         
         //check for altertate
-        if let alternateNexts = alternateMap?[next] && alternateShouldRun?(thingToActOn) {
+        if let alternateNexts = alternateMap?[next] {
             let alternateNext = alternateNexts.removeAtIndex(0) // Pop first from list
             return alternateNext(thingToActOn, alternateNexts, alternateMap)
         }
         next(thingToActOn, nextActions, alternateMap)
+        doGraph(thingToActOn, nextActions, alternateMap)
     }
     //return
     return thingToActOn
 }
 
-func checkForNext() {
-    
-}
+//func checkForNext() {
+//    
+//}
 
 
 struct SimulationEngine {
