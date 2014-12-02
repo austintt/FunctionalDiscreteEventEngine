@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct graph: Hashable {
+struct Action: Hashable {
     var uuid = NSUUID().UUIDString
-    var value = [([(Entity, NSDate) -> (Entity, Bool, Bool)], [(Entity, NSDate) -> (Entity, Bool, Bool)])]?
+    var go: (Entity) -> (Entity)
 }
 
 // MARK: Hashable
-extension graph: Hashable {
+extension Action: Hashable {
     var hashValue: Int {
         return uuid.hashValue
     }
 }
 
 // MARK: Equatable
-func ==(lhs: graph, rhs: graph) -> Bool {
+func ==(lhs: Action, rhs: Action) -> Bool {
     return lhs.uuid == rhs.uuid
 }
