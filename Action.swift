@@ -9,7 +9,7 @@
 import Foundation
 
 struct Action: Hashable {
-    var uuid = NSUUID().UUIDString
+    var uuid: String
     var go: (Entity) -> (Entity)
 }
 
