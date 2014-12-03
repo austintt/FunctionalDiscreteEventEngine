@@ -18,11 +18,27 @@ func startEngine() {
     myGraph.entities = [Entity(number: 0), Entity(number: 1), Entity(number: 2), Entity(number: 3), Entity(number: 4), Entity(number: 5)]
     
     //fill mainPath array
-    myGraph.mainPath = 
+    myGraph.mainPath = buildGraphlet(
+        {(anEntity: Entity) -> (Entity) in println("Main event 0 peformed on entity number \(anEntity.number)")
+        return anEntity},
+        {(anEntity: Entity) -> (Entity) in println("Main event 1 peformed on entity number \(anEntity.number)")
+            return anEntity},
+        {(anEntity: Entity) -> (Entity) in println("Main event 2 peformed on entity number \(anEntity.number)")
+            return anEntity},
+        {(anEntity: Entity) -> (Entity) in println("Main event 3 peformed on entity number \(anEntity.number)")
+            return anEntity})
 
     //fill altMap
 
-    //create driver
-
-    //run driver
+    //array - why?
+    let graphs = [myGraph]
+    
+    //create engine
+    var engine = SimulationEngine()
+    engine.graphs = graphs
+    
+    //run engine
+    engine.go(1)
+    
+    
 }
