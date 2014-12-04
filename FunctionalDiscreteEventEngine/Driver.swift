@@ -10,8 +10,6 @@ import Foundation
 
 //create graphs
 func startEngine() {
-    
-
     var myGraph = Graph()
 
     //fill entities array
@@ -19,13 +17,21 @@ func startEngine() {
     
     //fill mainPath array
     myGraph.mainPath = buildGraphlet(
-        {(anEntity: Entity) -> (Entity) in println("Main event 0 peformed on entity number \(anEntity.number)")
+        {(anEntity: Entity) -> (Entity) in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            println("Main event 0 peformed on entity number \(anEntity.number)")
+        })
         return anEntity},
-        {(anEntity: Entity) -> (Entity) in println("Main event 1 peformed on entity number \(anEntity.number)")
+        {(anEntity: Entity) -> (Entity) in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            println("Main event 1 peformed on entity number \(anEntity.number)")
+        })
             return anEntity},
-        {(anEntity: Entity) -> (Entity) in println("Main event 2 peformed on entity number \(anEntity.number)")
+        {(anEntity: Entity) -> (Entity) in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            println("Main event 2 peformed on entity number \(anEntity.number)")
+        })
             return anEntity},
-        {(anEntity: Entity) -> (Entity) in println("Main event 3 peformed on entity number \(anEntity.number)")
+        {(anEntity: Entity) -> (Entity) in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            println("Main event 3 peformed on entity number \(anEntity.number)")
+        })
             return anEntity})
 
     //fill altMap

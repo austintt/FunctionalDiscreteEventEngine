@@ -22,7 +22,11 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
     }
     
     //check for next
-    var next = nextActions?.removeAtIndex(0)
+    var next: Action?
+    if nextActions?.count > 0 {
+        next = nextActions?.removeAtIndex(0)
+    }
+    
     if next != nil {
         
         // Pop first off the array
