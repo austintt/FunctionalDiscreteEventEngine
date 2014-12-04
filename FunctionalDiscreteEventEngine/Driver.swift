@@ -11,6 +11,8 @@ import Foundation
 //create graphs
 struct Driver {
     
+    let startTime = 1
+    
     func startEngine() {
         var myGraph = Graph()
 
@@ -45,7 +47,7 @@ struct Driver {
         engine.graphs = graphs
 
         //run engine
-        engine.go(1)
+        engine.go(startTime)
     }
     
     //MAIN EVENTS

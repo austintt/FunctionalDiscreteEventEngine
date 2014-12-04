@@ -25,29 +25,28 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
     var next: Action?
     if nextActions?.count > 0 {
         next = nextActions?.removeAtIndex(0)
-    }
-    
-    if next != nil {
-        
-        // Pop first off the array
-        let nextFunc = next!
-        
-        //check for altertate
-        var alternateNexts = alternateMap?[next!]
-        if alternateNexts != nil {
-            let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
-            thingToActOn = alternateNext.go(thingToActOn)
+        if next != nil {
+            
+            // Pop first off the array
+            let nextFunc = next!
+            
+            //check for altertate
+            var alternateNexts = alternateMap?[next!]
+            if alternateNexts != nil {
+                let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
+                thingToActOn = alternateNext.go(thingToActOn)
+            }
+            else {
+                thingToActOn = next!.go(thingToActOn)
+            }
+            doAction(thingToActOn, nextActions, alternateMap)
         }
-        else {
-            thingToActOn = next!.go(thingToActOn)
-        }
-        doAction(thingToActOn, nextActions, alternateMap)
     }
     //return
     return thingToActOn
 }
-
-
+    
+    
 struct SimulationEngine {
     var graphs = [Graph]()
     var simQueue = dispatch_queue_create("com.simFunc.engine", DISPATCH_QUEUE_CONCURRENT)
@@ -61,6 +60,5 @@ struct SimulationEngine {
                 }
             }
         }
-        
     }
 }
