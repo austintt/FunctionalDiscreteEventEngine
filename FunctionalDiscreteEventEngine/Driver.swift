@@ -32,7 +32,7 @@ func startEngine() {
         {(anEntity: Entity) -> (Entity) in dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 3 peformed on entity number \(anEntity.number)")
         })
-            return anEntity})
+            return anEntity}) 
 
     //fill altMap
 
