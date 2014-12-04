@@ -15,7 +15,13 @@ struct Driver {
         var myGraph = Graph()
 
         //fill entities array
-        myGraph.entities = [Entity(number: 0), Entity(number: 1), Entity(number: 2), Entity(number: 3), Entity(number: 4), Entity(number: 5)]
+        myGraph.entities = [
+            Entity(number: 0),
+            Entity(number: 1),
+            Entity(number: 2),
+            Entity(number: 3),
+            Entity(number: 4),
+            Entity(number: 5)]
 
         //fill mainPath array
         myGraph.mainPath = buildGraphlet(
