@@ -39,14 +39,14 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
             else {
                 thingToActOn = next!.go(thingToActOn)
             }
-            doAction(thingToActOn, nextActions, alternateMap)
+            //recursively run next action
+            thingToActOn = doAction(thingToActOn, nextActions, alternateMap)
         }
     }
     //return
     return thingToActOn
 }
-    
-    
+
 struct SimulationEngine {
     var graphs = [Graph]()
     var simQueue = dispatch_queue_create("com.simFunc.engine", DISPATCH_QUEUE_CONCURRENT)
