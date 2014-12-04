@@ -24,10 +24,9 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
     //check for next
     var next: Action?
     if nextActions?.count > 0 {
+        // Pop first off the array
         next = nextActions?.removeAtIndex(0)
         if next != nil {
-            
-            // Pop first off the array
             let nextFunc = next!
             
             //check for altertate

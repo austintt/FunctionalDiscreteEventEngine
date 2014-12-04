@@ -51,6 +51,7 @@ struct Driver {
     }
     
     //MAIN EVENTS
+    // TODO: add failure inducing logic
     let event0 = {(anEntity: Entity) -> (Entity) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
