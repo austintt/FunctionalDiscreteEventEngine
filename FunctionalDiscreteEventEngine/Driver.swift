@@ -51,7 +51,6 @@ struct Driver {
     }
     
     //MAIN EVENTS
-    // TODO: add failure inducing logic
     let event0 = {(anEntity: Entity) -> (Entity) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
@@ -60,6 +59,12 @@ struct Driver {
     let event1 = {(anEntity: Entity) -> (Entity) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 1 peformed on entity number \(anEntity.number)")})
+        
+//        //set fail flag for testing
+//        let randNum = Int(arc4random_uniform(10))
+//        if randNum % 5 == 0 {
+//            anEntity.failPoints.append()
+//        }
         return anEntity}
     
     let event2 = {(anEntity: Entity) -> (Entity) in
