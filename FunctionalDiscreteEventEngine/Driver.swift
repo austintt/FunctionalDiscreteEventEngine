@@ -15,6 +15,7 @@ struct Driver {
     
     func startEngine() {
         var myGraph = Graph()
+        var test: Action
 
         //fill entities array
         myGraph.entities = [
@@ -33,7 +34,7 @@ struct Driver {
             event3)
 
         //fill altMap
-        myGraph.alternateMap = [buildGraphlet(event2)[0]: buildGraphlet(
+        myGraph.alternateMap = [myGraph.mainPath[3]: buildGraphlet(
             altEvent0,
             altEvent1,
             altEvent2,

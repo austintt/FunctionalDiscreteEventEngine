@@ -26,17 +26,20 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
     if nextActions?.count > 0 {
         // Pop first off the array
         next = nextActions?.removeAtIndex(0)
+        
+
         if next != nil {
             let nextFunc = next!
             
             //check for altertate
             var alternateNexts = alternateMap?[nextFunc]
+            
             if alternateNexts != nil {
                 let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
                 thingToActOn = alternateNext.go(thingToActOn)
             }
             else {
-                thingToActOn = next!.go(thingToActOn)
+                thingToActOn = nextFunc.go(thingToActOn)
             }
             //recursively run next action
             thingToActOn = doAction(thingToActOn, nextActions, alternateMap)
