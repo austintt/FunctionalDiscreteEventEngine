@@ -30,7 +30,7 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
             let nextFunc = next!
             
             //check for altertate
-            var alternateNexts = alternateMap?[next!]
+            var alternateNexts = alternateMap?[nextFunc]
             if alternateNexts != nil {
                 let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
                 thingToActOn = alternateNext.go(thingToActOn)
