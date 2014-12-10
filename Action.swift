@@ -9,8 +9,18 @@
 import Foundation
 
 struct Action: Hashable {
-    var uuid: String
-    var go: (Entity) -> (Entity)
+    var uuid: NSUUID
+    var behavior: (Entity, NSUUID) -> (Entity)
+    
+    init(behavior: (Entity, NSUUID)->(Entity)) {
+        self.uuid = NSUUID()
+        self.behavior = behavior
+    }
+    
+    func go(anEntity: Entity) -> Entity{
+        return self.behavior(anEntity, self.uuid)
+    }
+
 }
 
 // MARK: Hashable

@@ -10,13 +10,10 @@ import Foundation
 
 func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
     
-    //generate UUID
-    let uuid = NSUUID().UUIDString
-    
-    
     //check for failure
     if thingToActOn.failPoints != nil {
         if let rollbackTo = thingToActOn.failPoints?.last {
+            println("Fail check")
             return (thingToActOn)
         }
     }
@@ -37,11 +34,12 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
             if alternateNexts != nil {
                 let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
                 thingToActOn = alternateNext.go(thingToActOn)
+                nextActions = alternateNexts
             }
             else {
                 thingToActOn = nextFunc.go(thingToActOn)
             }
-            //recursively run next action
+            
             thingToActOn = doAction(thingToActOn, nextActions, alternateMap)
         }
     }

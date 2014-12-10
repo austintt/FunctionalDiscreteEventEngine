@@ -16,10 +16,10 @@ struct Graph {
     
 }
 
-func buildGraphlet(structs:(Entity)->(Entity)...) -> [Action] {
+func buildGraphlet(structs:(Entity, NSUUID)->(Entity)...) -> [Action] {
     var actions = [Action]()
     for aStruct in structs {
-       actions.append(Action(uuid: NSUUID().UUIDString, go: aStruct))
+        actions.append(Action(behavior: aStruct))
     }
     
     return actions

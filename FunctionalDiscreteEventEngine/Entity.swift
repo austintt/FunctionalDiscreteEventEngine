@@ -10,7 +10,7 @@ import Foundation
 
 struct Entity {
     var number: Int
-    var failPoints: [String]?
+    var failPoints: [NSUUID]?
     
     init(number: Int){
         self.number = number
