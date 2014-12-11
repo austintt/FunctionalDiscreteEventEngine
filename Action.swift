@@ -10,14 +10,14 @@ import Foundation
 
 struct Action: Hashable {
     var uuid: NSUUID
-    var behavior: (Entity, NSUUID) -> (Entity)
+    var behavior: (Entity, NSUUID) -> (Entity, Bool)
     
-    init(behavior: (Entity, NSUUID)->(Entity)) {
+    init(behavior: (Entity, NSUUID)->(Entity, Bool)) {
         self.uuid = NSUUID()
         self.behavior = behavior
     }
     
-    func go(anEntity: Entity) -> Entity{
+    func go(anEntity: Entity) -> (Entity, Bool){
         return self.behavior(anEntity, self.uuid)
     }
 

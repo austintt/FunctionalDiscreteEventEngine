@@ -10,10 +10,12 @@ import Foundation
 
 struct Entity {
     var number: Int
-    var failPoints: [NSUUID]?
+    var failPoints: [(Int, [Action]?, [Action : [Action]]?)]?
+    var numOfActionsPerformed: Int
     
     init(number: Int){
         self.number = number
         self.failPoints = nil
+        self.numOfActionsPerformed = 0
     }
 }

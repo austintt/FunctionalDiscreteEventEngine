@@ -52,59 +52,54 @@ struct Driver {
     }
     
     //MAIN EVENTS
-    let event0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let event0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
-    let event1 = {(var anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let event1 = {(var anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 1 peformed on entity number \(anEntity.number)")})
     
             //set fail flag for testing
             let randNum = Int(arc4random_uniform(10))
             if (randNum % 5) == 0 {
-                let uuid = NSUUID()
-                if let failPoints = anEntity.failPoints {
-                    anEntity.failPoints!.append(uuid)
-                }
-                else {
-                    anEntity.failPoints = [uuid]
-                }
-//                anEntity.failPoints!.append(uuid)
                 println("We failed!")
+                return (anEntity, true)
             }
-        return anEntity}
+        anEntity.numOfActionsPerformed++
+        dispatch_async(dispatch_get_main_queue(), {println("\t\tEntity \(anEntity.number) has been through action1 \(anEntity.numOfActionsPerformed) times")})
+        return (anEntity, false)}
     
-    let event2 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let event2 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 2 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
-    let event3 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let event3 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 3 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
     
     //ALT EVENTS
-    let altEvent0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let altEvent0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 0 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
-    let altEvent1 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let altEvent1 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 1 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
-    let altEvent2 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let altEvent2 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 2 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
     
-    let altEvent3 = {(anEntity: Entity, uuid: NSUUID) -> (Entity) in
+    let altEvent3 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 3 peformed on entity number \(anEntity.number)")})
-        return anEntity}
+        return (anEntity, false)}
 }

@@ -16,7 +16,7 @@ struct Graph {
     
 }
 
-func buildGraphlet(structs:(Entity, NSUUID)->(Entity)...) -> [Action] {
+func buildGraphlet(structs:(Entity, NSUUID)->(Entity, Bool)...) -> [Action] {
     var actions = [Action]()
     for aStruct in structs {
         actions.append(Action(behavior: aStruct))

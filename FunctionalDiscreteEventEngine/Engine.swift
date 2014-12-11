@@ -8,22 +8,22 @@
 
 import Foundation
 
-func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
+func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
     
     //check for failure
     if thingToActOn.failPoints != nil {
-        if let rollbackTo = thingToActOn.failPoints?.last {
+        if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
             println("Fail check")
-            return (thingToActOn)
+            doAction(rollbackIndex, thingToActOn, rollbackToActions, rollbackToAlts)
         }
     }
     
     //check for next
     var next: Action?
-    if nextActions?.count > 0 {
-        // Pop first off the array
-        next = nextActions?.removeAtIndex(0)
+    var failed = false
+    if nextActions?.count <= actionIndex {  //TODO: FIX BUG
         
+        next = nextActions?[actionIndex]
 
         if next != nil {
             let nextFunc = next!
@@ -32,15 +32,25 @@ func doAction(var thingToActOn: Entity, var nextActions: [Action]?, alternateMap
             var alternateNexts = alternateMap?[nextFunc]
             
             if alternateNexts != nil {
-                let alternateNext = alternateNexts!.removeAtIndex(0) // Pop first from list
-                thingToActOn = alternateNext.go(thingToActOn)
+                let alternateNext = alternateNexts![actionIndex]
+                (thingToActOn, failed) = alternateNext.go(thingToActOn)
+                if failed {
+                    var rollbackList = thingToActOn.failPoints
+                    if rollbackList == nil {
+                        thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                    }
+                    else {
+                        let toBeAppended = (actionIndex, nextActions, alternateMap)
+                        rollbackList!.append(toBeAppended)
+                    }
+                }
                 nextActions = alternateNexts
             }
             else {
-                thingToActOn = nextFunc.go(thingToActOn)
+                (thingToActOn, failed) = nextFunc.go(thingToActOn)  //TODO: CONVERT TO LINE 39
             }
-            
-            thingToActOn = doAction(thingToActOn, nextActions, alternateMap)
+            let nextIndex = actionIndex + 1
+            thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
         }
     }
     //return
@@ -56,7 +66,7 @@ struct SimulationEngine {
             var entities = aGraph.entities
             for anEntity in entities {
                 dispatch_async(simQueue) {
-                    let finalEntity = doAction(anEntity, aGraph.mainPath, aGraph.alternateMap)
+                    let finalEntity = doAction(0, anEntity, aGraph.mainPath, aGraph.alternateMap)
                 }
             }
         }
