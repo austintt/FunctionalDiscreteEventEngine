@@ -47,7 +47,18 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
                 nextActions = alternateNexts
             }
             else {
-                (thingToActOn, failed) = nextFunc.go(thingToActOn)  //TODO: CONVERT TO LINE 39
+                (thingToActOn, failed) = nextFunc.go(thingToActOn)
+                if failed {
+                    var rollbackList = thingToActOn.failPoints
+                    if rollbackList == nil {
+                        thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                    }
+                    else {
+                        let toBeAppended = (actionIndex, nextActions, alternateMap)
+                        rollbackList!.append(toBeAppended)
+                    }
+                }
+
             }
             let nextIndex = actionIndex + 1
             thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
