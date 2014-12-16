@@ -9,11 +9,20 @@
 import Foundation
 
 func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
+    //DEBUG
+//    dispatch_async(dispatch_get_main_queue(), {
+//        println("START OF DOACTION: ActionIndex \(actionIndex)")
+//        println("START OF DOACTION: nextActions.count \(nextActions?.count)") })
     
     //check for failure
     if thingToActOn.failPoints != nil {
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
-            println("Fail check")
+//            dispatch_async(dispatch_get_main_queue(), {println("In fail check")})
+            
+            //DEBUG
+//            dispatch_async(dispatch_get_main_queue(), {
+//                println("IN FAIL CHECK: rollbackIndex \(rollbackIndex)")
+//                println("IN FAIL CHECK: rollbackToActions.count \(rollbackToActions?.count)") })
             doAction(rollbackIndex, thingToActOn, rollbackToActions, rollbackToAlts)
         }
     }
@@ -21,49 +30,61 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
     //check for next
     var next: Action?
     var failed = false
-    if nextActions?.count <= actionIndex {  //TODO: FIX BUG
-        
-        next = nextActions?[actionIndex]
-
-        if next != nil {
-            let nextFunc = next!
+    //DEBUG
+//    dispatch_async(dispatch_get_main_queue(), {
+//        println("\tBEFORE NEXT CHECK: ActionIndex \(actionIndex)")
+//        println("\tBEFORE NEXT CHECK: nextActions.count \(nextActions?.count)") })
+    if let nextCount = nextActions{
+        if nextCount.count > actionIndex {
+            //DEBUG
+//            dispatch_async(dispatch_get_main_queue(), {
+//                println("\tIN NEXT CHECK: ActionIndex \(actionIndex)")
+//                println("\tIN  NEXT CHECK: nextActions.count \(nextCount.count)") })
             
-            //check for altertate
-            var alternateNexts = alternateMap?[nextFunc]
+            next = nextCount[actionIndex]
+            if next != nil {
+                
+                let nextFunc = next!
             
-            if alternateNexts != nil {
-                let alternateNext = alternateNexts![actionIndex]
-                (thingToActOn, failed) = alternateNext.go(thingToActOn)
-                if failed {
-                    var rollbackList = thingToActOn.failPoints
-                    if rollbackList == nil {
-                        thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                //check for altertate
+                var alternateNexts = alternateMap?[nextFunc]
+                
+                if alternateNexts != nil {
+                    let alternateNext = alternateNexts![actionIndex]
+                    (thingToActOn, failed) = alternateNext.go(thingToActOn)
+                    if failed {
+                        var rollbackList = thingToActOn.failPoints
+                        if rollbackList == nil {
+                            thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                        }
+                        else {
+                            let toBeAppended = (actionIndex, nextActions, alternateMap)
+                            rollbackList!.append(toBeAppended)
+                        }
                     }
-                    else {
-                        let toBeAppended = (actionIndex, nextActions, alternateMap)
-                        rollbackList!.append(toBeAppended)
-                    }
+                    nextActions = alternateNexts
                 }
-                nextActions = alternateNexts
-            }
-            else {
-                (thingToActOn, failed) = nextFunc.go(thingToActOn)
-                if failed {
-                    var rollbackList = thingToActOn.failPoints
-                    if rollbackList == nil {
-                        thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                else {
+                    (thingToActOn, failed) = nextFunc.go(thingToActOn)
+                    if failed {
+                        var rollbackList = thingToActOn.failPoints
+                        if rollbackList == nil {
+                            thingToActOn.failPoints = [(actionIndex, nextActions, alternateMap)]
+                        }
+                        else {
+                            let toBeAppended = (actionIndex, nextActions, alternateMap)
+                            rollbackList!.append(toBeAppended)
+                        }
                     }
-                    else {
-                        let toBeAppended = (actionIndex, nextActions, alternateMap)
-                        rollbackList!.append(toBeAppended)
-                    }
+                    
                 }
-
+                
+                let nextIndex = actionIndex + 1
+                thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
             }
-            let nextIndex = actionIndex + 1
-            thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
         }
     }
+    
     //return
     return thingToActOn
 }
