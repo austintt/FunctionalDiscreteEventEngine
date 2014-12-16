@@ -8,11 +8,21 @@
 
 import Foundation
 
-//create graphs
 struct Driver {
     
+    //set start time
     let startTime = 1
     
+    /* Sets everyting up to stat simulation
+    * Needs:
+    *       - Main path colsures which will
+    *         be turned into actions and set as the 
+    *         mainPath in myGraph.
+    *       - Enitites which will be put through the simulation
+    *
+    * Optional:
+    *       - Alternate path closures
+    */
     func startEngine() {
         var myGraph = Graph()
         var test: Action
@@ -40,18 +50,20 @@ struct Driver {
             altEvent2,
             altEvent3)]
 
-        //array - why?
+        //put on array
         let graphs = [myGraph]
 
         //create engine
         var engine = SimulationEngine()
+        
+        //assign newly formed graph array to engine
         engine.graphs = graphs
 
         //run engine
         engine.go(startTime)
     }
     
-    //MAIN EVENTS
+    //MAIN EVENT CLOSURES
     let event0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
@@ -84,7 +96,7 @@ struct Driver {
         return (anEntity, false)}
     
     
-    //ALT EVENTS
+    //ALT EVENT CLOSURES
     let altEvent0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 0 peformed on entity number \(anEntity.number)")})

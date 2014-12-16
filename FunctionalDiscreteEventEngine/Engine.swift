@@ -13,7 +13,7 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
     //check for failure
     if thingToActOn.failPoints != nil {
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
-            println("Fail check")
+            println("Perfroming fail check")
             thingToActOn.failPoints?.removeLast()
             doAction(rollbackIndex, thingToActOn, rollbackToActions, rollbackToAlts)
         }
@@ -73,6 +73,10 @@ struct SimulationEngine {
     var graphs = [Graph]()
     var simQueue = dispatch_queue_create("com.simFunc.engine", DISPATCH_QUEUE_CONCURRENT)
     
+    /*
+    * For each graph in the graph array, and for each entity in the current graph,
+    * perform doAction.
+    */
     func go(SimulateStartTime: Int) {
         for aGraph in graphs {
             var entities = aGraph.entities
