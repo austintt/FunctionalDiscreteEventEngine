@@ -9,20 +9,11 @@
 import Foundation
 
 func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
-    //DEBUG
-//    dispatch_async(dispatch_get_main_queue(), {
-//        println("START OF DOACTION: ActionIndex \(actionIndex)")
-//        println("START OF DOACTION: nextActions.count \(nextActions?.count)") })
     
     //check for failure
     if thingToActOn.failPoints != nil {
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
-//            dispatch_async(dispatch_get_main_queue(), {println("In fail check")})
-            
-            //DEBUG
-//            dispatch_async(dispatch_get_main_queue(), {
-//                println("IN FAIL CHECK: rollbackIndex \(rollbackIndex)")
-//                println("IN FAIL CHECK: rollbackToActions.count \(rollbackToActions?.count)") })
+            println("Fail check")
             doAction(rollbackIndex, thingToActOn, rollbackToActions, rollbackToAlts)
         }
     }
@@ -30,22 +21,14 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
     //check for next
     var next: Action?
     var failed = false
-    //DEBUG
-//    dispatch_async(dispatch_get_main_queue(), {
-//        println("\tBEFORE NEXT CHECK: ActionIndex \(actionIndex)")
-//        println("\tBEFORE NEXT CHECK: nextActions.count \(nextActions?.count)") })
-    if let nextCount = nextActions{
-        if nextCount.count > actionIndex {
-            //DEBUG
-//            dispatch_async(dispatch_get_main_queue(), {
-//                println("\tIN NEXT CHECK: ActionIndex \(actionIndex)")
-//                println("\tIN  NEXT CHECK: nextActions.count \(nextCount.count)") })
+    if let actions = nextActions {  //TODO: FIX BUG
+        if actions.count > actionIndex {
             
-            next = nextCount[actionIndex]
+            next = actions[actionIndex]
+            
             if next != nil {
-                
                 let nextFunc = next!
-            
+                
                 //check for altertate
                 var alternateNexts = alternateMap?[nextFunc]
                 
@@ -78,13 +61,11 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
                     }
                     
                 }
-                
                 let nextIndex = actionIndex + 1
                 thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
             }
         }
     }
-    
     //return
     return thingToActOn
 }
