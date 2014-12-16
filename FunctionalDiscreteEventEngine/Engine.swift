@@ -10,10 +10,11 @@ import Foundation
 
 func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
     
-    //check for failure - TODO: BUG HERE I THINK
+    //check for failure
     if thingToActOn.failPoints != nil {
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
             println("Fail check")
+            thingToActOn.failPoints?.removeLast()
             doAction(rollbackIndex, thingToActOn, rollbackToActions, rollbackToAlts)
         }
     }
