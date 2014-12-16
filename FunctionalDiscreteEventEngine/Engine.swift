@@ -10,7 +10,7 @@ import Foundation
 
 func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
     
-    //check for failure
+    //check for failure - TODO: BUG HERE I THINK
     if thingToActOn.failPoints != nil {
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
             println("Fail check")
@@ -21,7 +21,7 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
     //check for next
     var next: Action?
     var failed = false
-    if nextActions?.count > actionIndex {  //TODO: FIX BUG
+    if nextActions?.count > actionIndex {
         
         next = nextActions?[actionIndex]
         
