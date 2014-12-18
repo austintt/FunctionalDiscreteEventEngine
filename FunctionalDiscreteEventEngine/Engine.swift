@@ -31,10 +31,11 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
             
             //check for altertate
             var alternateNexts = alternateMap?[nextFunc]
-            
             if alternateNexts != nil {
                 let alternateNext = alternateNexts![actionIndex]
                 (thingToActOn, failed) = alternateNext.go(thingToActOn)
+                
+                //if there is a failpoint
                 if failed {
                     var rollbackList = thingToActOn.failPoints
                     if rollbackList == nil {
@@ -49,6 +50,7 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
             }
             else {
                 (thingToActOn, failed) = nextFunc.go(thingToActOn)
+                //if there is a failpoint
                 if failed {
                     var rollbackList = thingToActOn.failPoints
                     if rollbackList == nil {
@@ -61,6 +63,7 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
                 }
                 
             }
+            //call self with modified list of nexts and alts
             let nextIndex = actionIndex + 1
             thingToActOn = doAction(nextIndex, thingToActOn, nextActions, alternateMap)
         }

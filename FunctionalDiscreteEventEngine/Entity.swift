@@ -7,7 +7,12 @@
 //
 
 import Foundation
-
+/*
+* Entity - what the action will be performed on
+* This incarnation of Entity has a number to identify it, 
+* an array of failpoints, and a variable for tracking how many
+* times it has passed througha  certain action.
+*/
 struct Entity {
     var number: Int
     var failPoints: [(Int, [Action]?, [Action : [Action]]?)]?

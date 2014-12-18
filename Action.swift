@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+* Action struct holds a closure and is hashable
+* to be stored in a dictionary
+*/
 struct Action: Hashable {
     var uuid: NSUUID
     var behavior: (Entity, NSUUID) -> (Entity, Bool)

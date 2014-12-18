@@ -25,7 +25,6 @@ struct Driver {
     */
     func startEngine() {
         var myGraph = Graph()
-        var test: Action
 
         //fill entities array
         myGraph.entities = [
@@ -63,7 +62,12 @@ struct Driver {
         engine.go(startTime)
     }
     
-    //MAIN EVENT CLOSURES
+    /*
+    * MAIN EVENT CLOSURES
+    * Closures must reveive an Entity and a NSUUID while returning
+    * an Entity and a Bool, signifying pass or failure within the closure
+    */
+    
     let event0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
@@ -96,7 +100,11 @@ struct Driver {
         return (anEntity, false)}
     
     
-    //ALT EVENT CLOSURES
+    /*
+    * ALT EVENT CLOSURES
+    * Closures must reveive an Entity and a NSUUID while returning
+    * an Entity and a Bool, signifying pass or failure within the closure
+    */
     let altEvent0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("\tAlternate event 0 peformed on entity number \(anEntity.number)")})
