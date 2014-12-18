@@ -8,21 +8,22 @@
 
 import Foundation
 
+/* Driver is used to start the engine and is user defined.
+* Sets everyting up to stat simulation
+* Needs:
+*       - Main path colsures which will
+*         be turned into actions and set as the
+*         mainPath in myGraph.
+*       - Enitites which will be put through the simulation
+*
+* Optional:
+*       - Alternate path closures
+*/
 struct Driver {
-    
+
     //set start time
     let startTime = 1
     
-    /* Sets everyting up to stat simulation
-    * Needs:
-    *       - Main path colsures which will
-    *         be turned into actions and set as the 
-    *         mainPath in myGraph.
-    *       - Enitites which will be put through the simulation
-    *
-    * Optional:
-    *       - Alternate path closures
-    */
     func startEngine() {
         var myGraph = Graph()
 
@@ -67,7 +68,6 @@ struct Driver {
     * Closures must reveive an Entity and a NSUUID while returning
     * an Entity and a Bool, signifying pass or failure within the closure
     */
-    
     let event0 = {(anEntity: Entity, uuid: NSUUID) -> (Entity, Bool) in
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             println("Main event 0 peformed on entity number \(anEntity.number)")})
