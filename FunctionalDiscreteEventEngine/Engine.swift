@@ -7,11 +7,12 @@
 //
 
 import Foundation
-
+// Ran on seperate threads. Each action takes the thing to act on
 func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Action]?, alternateMap: [Action : [Action]]?) -> (Entity) {
     
     //check for failure
     if thingToActOn.failPoints != nil {
+        // If there are fail points, roll back to the checkpoint with the list of things to continue recursively
         if let (rollbackIndex, rollbackToActions, rollbackToAlts) = thingToActOn.failPoints?.last {
             println("Perfroming fail check")
             thingToActOn.failPoints?.removeLast()
@@ -25,13 +26,14 @@ func doAction(actionIndex: Int, var thingToActOn: Entity, var nextActions: [Acti
     if nextActions?.count > actionIndex {
         
         next = nextActions?[actionIndex]
-        
+        // Make sure there are still things to do
         if next != nil {
             let nextFunc = next!
             
             //check for altertate
             var alternateNexts = alternateMap?[nextFunc]
             if alternateNexts != nil {
+                // IF there is an alternate, do that.
                 let alternateNext = alternateNexts![actionIndex]
                 (thingToActOn, failed) = alternateNext.go(thingToActOn)
                 
